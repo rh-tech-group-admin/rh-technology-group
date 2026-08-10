@@ -1,92 +1,157 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2685.7">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R&H Technology Group | Enterprise Cloud & AI Infrastructure Advisory</title>
+    <style>
+        :root {
+            --bg-color: #07090e;
+            --card-bg: #0f1523;
+            --card-border: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.15);
+            --code-bg: #030712;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
+        
+        header { border-bottom: 1px solid var(--card-border); padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: center; background: rgba(7, 9, 14, 0.8); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; }
+        .logo { font-weight: 700; font-size: 1.25rem; letter-spacing: -0.025em; color: var(--text-main); }
+        .logo span { color: var(--accent); }
+        
+        main { flex: 1; max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; width: 100%; }
+        
+        .hero { text-align: center; max-width: 850px; margin: 0 auto 5rem auto; }
+        .badge { display: inline-block; background: var(--accent-glow); color: var(--accent); padding: 0.375rem 0.875rem; border-radius: 9999px; font-size: 0.8125rem; font-weight: 600; margin-bottom: 1.5rem; border: 1px solid rgba(56, 189, 248, 0.3); }
+        .hero h1 { font-size: 3.25rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 1.5rem; background: linear-gradient(to right, #ffffff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2.5rem; line-height: 1.7; }
+        
+        /* Pillars Grid */
+        .pillars-header { text-align: center; margin-bottom: 3rem; }
+        .pillars-header h2 { font-size: 2rem; font-weight: 700; letter-spacing: -0.02em; }
+        .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin-bottom: 5rem; }
+        
+        .pillar-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 2.5rem; display: flex; flex-direction: column; transition: all 0.3s ease; }
+        .pillar-card:hover { border-color: var(--accent); box-shadow: 0 10px 30px -10px var(--accent-glow); transform: translateY(-3px); }
+        .pillar-tag { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); font-weight: 700; margin-bottom: 0.75rem; }
+        .pillar-card h3 { font-size: 1.35rem; margin-bottom: 1rem; color: var(--text-main); letter-spacing: -0.01em; }
+        .pillar-card > p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
+        
+        .tech-points { list-style: none; margin-top: auto; border-top: 1px solid var(--card-border); padding-top: 1.25rem; }
+        .tech-points li { font-size: 0.875rem; color: var(--text-muted); margin-bottom: 0.625rem; display: flex; align-items: flex-start; }
+        .tech-points li::before { content: "›"; color: var(--accent); font-weight: bold; margin-right: 0.50rem; line-height: 1; }
+        
+        /* Metrics Section */
+        .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 5rem; }
+        .metric-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 8px; padding: 2rem; text-align: center; }
+        .metric-value { font-size: 2.5rem; font-weight: 800; color: var(--accent); margin-bottom: 0.5rem; letter-spacing: -0.02em; }
+        .metric-label { color: var(--text-muted); font-size: 0.9rem; font-weight: 500; }
+
+        /* CTA Section */
+        .cta-section { background: linear-gradient(180deg, var(--card-bg) 0%, var(--bg-color) 100%); border: 1px solid var(--card-border); border-radius: 16px; padding: 4rem 2rem; text-align: center; position: relative; overflow: hidden; }
+        .cta-section h2 { font-size: 2.25rem; margin-bottom: 1rem; letter-spacing: -0.02em; }
+        .cta-section p { color: var(--text-muted); margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+        
+        .btn { display: inline-block; background-color: var(--text-main); color: var(--bg-color); font-weight: 600; padding: 0.875rem 2rem; border-radius: 6px; text-decoration: none; transition: background-color 0.2s, transform 0.1s; }
+        .btn:hover { background-color: var(--accent); transform: scale(1.02); }
+        .btn-secondary { background: transparent; color: var(--text-main); border: 1px solid var(--card-border); margin-left: 1rem; }
+        .btn-secondary:hover { border-color: var(--accent); background: var(--card-bg); }
+
+        footer { border-top: 1px solid var(--card-border); text-align: center; padding: 2.5rem 2rem; color: var(--text-muted); font-size: 0.875rem; }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.25rem; }
+            .btn-secondary { margin-left: 0; margin-top: 1rem; display: block; }
+        }
+    </style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="en"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;R&amp;H Technology Group | Enterprise Cloud &amp; AI Infrastructure&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>:root {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>--bg-color: #0b0f19;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>--card-bg: #131b2e;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>--text-main: #f8fafc;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>--text-muted: #94a3b8;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>--accent: #38bdf8;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>--border: #1e293b;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>* { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>header { border-bottom: 1px solid var(--border); padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: center; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.logo { font-weight: 700; font-size: 1.25rem; letter-spacing: -0.025em; color: var(--text-main); }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.logo span { color: var(--accent); }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>main { flex: 1; max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; width: 100%; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hero { text-align: center; max-width: 800px; margin: 0 auto 4rem auto; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hero h1 { font-size: 3rem; font-weight: 800; letter-spacing: -0.025em; margin-bottom: 1.5rem; background: linear-gradient(to right, #ffffff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hero p { font-size: 1.25rem; color: var(--text-muted); margin-bottom: 2rem; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 4rem; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.pillar-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 2rem; transition: border-color 0.2s; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.pillar-card:hover { border-color: var(--accent); }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.pillar-card h3 { font-size: 1.25rem; margin-bottom: 1rem; color: var(--text-main); }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.pillar-card p { color: var(--text-muted); font-size: 0.95rem; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.cta-section { background: linear-gradient(180deg, var(--card-bg) 0%, var(--bg-color) 100%); border: 1px solid var(--border); border-radius: 12px; padding: 3rem; text-align: center; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.cta-section h2 { font-size: 2rem; margin-bottom: 1rem; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.cta-section p { color: var(--text-muted); margin-bottom: 2rem; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.btn { display: inline-block; background-color: var(--text-main); color: var(--bg-color); font-weight: 600; padding: 0.75rem 1.5rem; border-radius: 6px; text-decoration: none; transition: background-color 0.2s; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.btn:hover { background-color: var(--accent); }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>footer { border-top: 1px solid var(--border); text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.875rem; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;header&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="logo"&gt;R&amp;H &lt;span&gt;Technology Group&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;a href="mailto:eng@rhtechnologygroup.com" class="btn" style="padding: 0.5rem 1rem; font-size: 0.875rem;"&gt;Contact Engineering&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/header&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;main&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;section class="hero"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h1&gt;Enterprise Solutions &amp; Engineering Excellence&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p&gt;We architect resilient, high-velocity infrastructure and intelligent platforms for modern enterprises.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;section class="pillars"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="pillar-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3&gt;Enterprise Cloud Migrations&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;Seamlessly transition legacy workloads to scalable, multi-cloud or hybrid environments with zero business disruption and built-in FinOps optimization.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="pillar-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3&gt;CI/CD Refactoring&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;Eliminate deployment bottlenecks, reduce release lead times, and establish bulletproof GitOps pipelines backed by advanced telemetry.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="pillar-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3&gt;AI-Augmented Platform Engineering&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;Empower engineering teams through Specification-Driven Development (SDD) and secure, guardrailed enterprise AI tooling integration.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;section class="cta-section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2&gt;Ready to Accelerate Your Enterprise?&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p&gt;Partner with our engineering leaders to modernize your architecture and scale your development velocity.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="mailto:eng@rhtechnologygroup.com" class="btn"&gt;Schedule an Architecture Review&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/main&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;footer&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&amp;copy; 2026 R&amp;H Technology Group. All rights reserved.</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/footer&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+    <header>
+        <div class="logo">R&H <span>Technology Group</span></div>
+        <div>
+            <a href="mailto:eng@rhtechnologygroup.com" class="btn" style="padding: 0.5rem 1rem; font-size: 0.875rem;">Contact Engineering</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="badge">Enterprise Infrastructure Advisory</div>
+            <h1>Resilient Engineering for High-Velocity Enterprises</h1>
+            <p>We architect fault-tolerant multi-cloud environments, modernize deployment pipelines, and operationalize secure AI tooling through Specification-Driven Development.</p>
+            <div>
+                <a href="mailto:eng@rhtechnologygroup.com" class="btn">Schedule an Architecture Review</a>
+            </div>
+        </section>
+
+        <section class="pillars-header">
+            <h2>Core Engineering Pillars</h2>
+        </section>
+
+        <section class="pillars">
+            <div class="pillar-card">
+                <div class="pillar-tag">Pillar 01</div>
+                <h3>Enterprise Cloud Migrations</h3>
+                <p>Seamlessly transition complex legacy workloads to multi-cloud or hybrid environments with absolute operational continuity.</p>
+                <ul class="tech-points">
+                    <li>Zero-trust network architectures & micro-segmentation</li>
+                    <li>Automated dependency mapping and legacy codebase audits</li>
+                    <li>Zero-downtime execution via blue-green/canary release strategies</li>
+                    <li>Automated FinOps guardrails & post-migration cost optimization</li>
+                </ul>
+            </div>
+
+            <div class="pillar-card">
+                <div class="pillar-tag">Pillar 02</div>
+                <h3>CI/CD Refactoring</h3>
+                <p>Eliminate deployment bottlenecks and release friction by engineering bulletproof, immutable release pipelines.</p>
+                <ul class="tech-points">
+                    <li>Parallelized build matrix execution & artifact caching</li>
+                    <li>GitOps governance driven entirely by pull-request workflows</li>
+                    <li>Security-gate automation & immutable infrastructure validation</li>
+                    <li>Real-time telemetry embedded directly into MTTR reduction loops</li>
+                </ul>
+            </div>
+
+            <div class="pillar-card">
+                <div class="pillar-tag">Pillar 03</div>
+                <h3>AI-Augmented Platform Engineering</h3>
+                <p>Empower enterprise development teams with structured governance, guardrailed LLMs, and high-velocity developer platforms.</p>
+                <ul class="tech-points">
+                    <li>Specification-Driven Development (SDD) compliance frameworks</li>
+                    <li>Air-gapped and cloud-isolated LLM guardrail integration</li>
+                    <li>Automated compliance documentation & test generation</li>
+                    <li>Internal Developer Platforms (IDPs) designed to minimize cognitive load</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-value">100%</div>
+                <div class="metric-label">Zero-Downtime Migration Record</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">70%</div>
+                <div class="metric-label">Avg. Reduction in Release Lead Times</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">Zero-Trust</div>
+                <div class="metric-label">Security-First AI Governance Model</div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <h2>Ready to Modernize Your Enterprise Stack?</h2>
+            <p>Partner with senior infrastructure engineers who execute with code-first rigor and production-ready accountability.</p>
+            <a href="mailto:eng@rhtechnologygroup.com" class="btn">Engage Our Architects</a>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2026 R&H Technology Group. All rights reserved. &bull; <a href="mailto:eng@rhtechnologygroup.com" style="color: var(--text-muted); text-decoration: none;">eng@rhtechnologygroup.com</a>
+    </footer>
 </body>
 </html>
