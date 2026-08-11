@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RH Technology Group | Coming Soon</title>
+    <title>Platform Architecture | RH Technology Group | Coming Soon</title>
     <style>
         :root {
             --bg-color: #07090e;
@@ -15,42 +15,143 @@
             --accent-glow: rgba(56, 189, 248, 0.15);
         }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; justify-content: space-between; align-items: center; padding: 2rem; text-align: center; }
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
         
-        .container { max-width: 750px; margin: auto; padding: 3rem 0; }
-        .badge { display: inline-block; background: var(--accent-glow); color: var(--accent); padding: 0.375rem 0.875rem; border-radius: 9999px; font-size: 0.8125rem; font-weight: 600; margin-bottom: 1.75rem; border: 1px solid rgba(56, 189, 248, 0.3); letter-spacing: 0.05em; text-transform: uppercase; }
-        
-        .logo { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.025em; color: var(--text-muted); margin-bottom: 3.5rem; }
+        header { border-bottom: 1px solid var(--card-border); padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: center; background: rgba(7, 9, 14, 0.8); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; }
+        .logo { font-weight: 700; font-size: 1.25rem; letter-spacing: -0.025em; color: var(--text-main); text-decoration: none; }
         .logo span { color: var(--accent); }
         
-        h1 { font-size: 3.25rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 1.25rem; background: linear-gradient(to right, #ffffff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        main { flex: 1; max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; width: 100%; }
         
-        p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 3rem; line-height: 1.7; }
+        .hero { text-align: center; max-width: 850px; margin: 0 auto 4rem auto; }
+        .badge { display: inline-block; background: var(--accent-glow); color: var(--accent); padding: 0.375rem 0.875rem; border-radius: 9999px; font-size: 0.8125rem; font-weight: 600; margin-bottom: 1.5rem; border: 1px solid rgba(56, 189, 248, 0.3); }
+        .hero h1 { font-size: 2.75rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 1rem; }
+        .hero p { font-size: 1.15rem; color: var(--text-muted); }
         
-        .actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .section-header { text-align: center; margin: 4rem 0 2.5rem 0; }
+        .section-header h2 { font-size: 2rem; font-weight: 700; letter-spacing: -0.02em; }
+
+        .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
+        
+        /* Unified Card Style for both Pillars and Tech Stack */
+        .pillar-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 2.5rem; display: flex; flex-direction: column; transition: all 0.3s ease; }
+        .pillar-card:hover { border-color: var(--accent); box-shadow: 0 10px 30px -10px var(--accent-glow); transform: translateY(-3px); }
+        .pillar-tag { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); font-weight: 700; margin-bottom: 0.75rem; }
+        .pillar-card h3 { font-size: 1.35rem; margin-bottom: 1rem; color: var(--text-main); letter-spacing: -0.01em; }
+        .pillar-card > p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
+        
+        .tech-points { list-style: none; margin-top: auto; border-top: 1px solid var(--card-border); padding-top: 1.25rem; }
+        .tech-points li { font-size: 0.875rem; color: var(--text-muted); margin-bottom: 0.625rem; display: flex; align-items: flex-start; }
+        .tech-points li::before { content: "›"; color: var(--accent); font-weight: bold; margin-right: 0.50rem; line-height: 1; }
+
+        .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 4rem; margin-bottom: 5rem; }
+        .metric-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 8px; padding: 2rem; text-align: center; }
+        .metric-value { font-size: 2.5rem; font-weight: 800; color: var(--accent); margin-bottom: 0.5rem; letter-spacing: -0.02em; }
+        .metric-label { color: var(--text-muted); font-size: 0.9rem; font-weight: 500; }
+
         .btn { display: inline-block; background-color: var(--text-main); color: var(--bg-color); font-weight: 600; padding: 0.875rem 2rem; border-radius: 6px; text-decoration: none; transition: background-color 0.2s, transform 0.1s; }
         .btn:hover { background-color: var(--accent); transform: scale(1.02); }
-        
-        .btn-secondary { background-color: transparent; color: var(--text-main); border: 1px solid var(--card-border); }
-        .btn-secondary:hover { background-color: var(--card-border); border-color: var(--text-muted); }
 
-        footer { color: var(--text-muted); font-size: 0.875rem; padding-top: 2rem; }
+        footer { border-top: 1px solid var(--card-border); text-align: center; padding: 2.5rem 2rem; color: var(--text-muted); font-size: 0.875rem; }
     </style>
 </head>
 <body>
-    <div></div>
-    
-    <div class="container">
-        <div class="logo">RH <span>Technology Group</span></div>
-        <div class="badge">Launching 2027</div>
-        <h1>>Resilient Infrastructure. Engineered for Scale.</h1>
-        <p>We are engineering our full public digital platform. In the meantime, explore a sneak peek of our core architecture pillars or reach out to engineering directly.</p>
-        
-        <div class="actions">
-            <a href="/platform.html" class="btn">Explore Platform Preview</a>
-            <a href="mailto:info@rhtechnologygroup.com" class="btn btn-secondary">Direct Engineering Inquiry</a>
+    <header>
+        <a href="/" class="logo">RH <span>Technology Group</span></a>
+        <div>
+            <a href="/" class="btn" style="padding: 0.5rem 1rem; font-size: 0.875rem; background: transparent; color: var(--text-main); border: 1px solid var(--card-border);">← Back Home</a>
         </div>
-    </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="badge">Architecture Sneak Peek</div>
+            <h1>Core Engineering Blueprint</h1>
+            <p>An early look at our technical advisory framework designed for high-velocity enterprise workloads.</p>
+        </section>
+
+        <section class="section-header">
+            <h2>Core Architectural Pillars</h2>
+        </section>
+
+        <section class="pillars">
+            <div class="pillar-card">
+                <div class="pillar-tag">Pillar 01</div>
+                <h3>Enterprise Cloud Migrations</h3>
+                <p>Seamlessly transition complex production workloads to multi-cloud or hybrid environments with zero business disruption and absolute operational continuity.</p>
+                <ul class="tech-points">
+                    <li>Multi-cloud architecture design tailored to your enterprise roadmap</li>
+                    <li>Automated dependency mapping, discovery, and legacy codebase audits</li>
+                    <li>Zero-downtime execution via blue-green, canary, or phased cutover strategies</li>
+                    <li>Post-migration performance tuning and continuous FinOps cost optimization</li>
+                </ul>
+            </div>
+
+            <div class="pillar-card">
+                <div class="pillar-tag">Pillar 02</div>
+                <h3>CI/CD Pipeline Refactoring</h3>
+                <p>Eliminate release bottlenecks, reduce deployment lead times, and establish robust, high-performance delivery pipelines.</p>
+                <ul class="tech-points">
+                    <li>Pipeline acceleration tailored to your chosen build and deployment toolchain</li>
+                    <li>Automated test orchestration, parallelized builds, and artifact caching</li>
+                    <li>GitOps governance driven securely by pull-request workflows</li>
+                    <li>Real-time telemetry and automated gates embedded directly into release cycles</li>
+                </ul>
+            </div>
+
+            <div class="pillar-card">
+                <div class="pillar-tag">Pillar 03</div>
+                <h3>Infrastructure Automation & Observability</h3>
+                <p>Codify your infrastructure, enforce deep system visibility, and maintain rigorous L2/L3 incident response readiness.</p>
+                <ul class="tech-points">
+                    <li>Infrastructure as Code (IaC) implementation adapted to your preferred tooling</li>
+                    <li>Full-stack observability, custom dashboards, and proactive telemetry setup</li>
+                    <li>Rigorous SLA incident management, rapid troubleshooting, and alerting workflows</li>
+                    <li>Standardized developer self-service provisioning and comprehensive technical documentation</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section-header">
+            <h2>Core Technology Stack & Ecosystems</h2>
+        </section>
+
+        <section class="pillars">
+            <div class="pillar-card">
+                <div class="pillar-tag">Ecosystem 01</div>
+                <h3>Cloud Platforms</h3>
+                <p>Enterprise infrastructure deployment across leading public and private cloud fabrics.</p>
+                <ul class="tech-points">
+                    <li>Amazon Web Services (AWS) multi-region environments</li>
+                    <li>Google Cloud Platform (GCP) & Private GKE architectures</li>
+                    <li>Kubernetes container orchestration & Docker microservices</li>
+                </ul>
+            </div>
+
+            <div class="pillar-card">
+                <div class="pillar-tag">Ecosystem 02</div>
+                <h3>Automation & IaC</h3>
+                <p>Declarative configuration management ensuring absolute infrastructure consistency.</p>
+                <ul class="tech-points">
+                    <li>Terraform & OpenTofu state management</li>
+                    <li>AWS CloudFormation modular templates</li>
+                    <li>Automated environment provisioning and policy enforcement</li>
+                </ul>
+            </div>
+
+            <div class="pillar-card">
+                <div class="pillar-tag">Ecosystem 03</div>
+                <h3>Pipelines & Operations</h3>
+                <p>End-to-end release automation, real-time telemetry, and resilient incident support.</p>
+                <ul class="tech-points">
+                    <li>Jenkins, Harness, GitHub Actions & Octopus Deploy</li>
+                    <li>APM monitoring & custom metric dashboards (Dynatrace, New Relic, Grafana)</li>
+                    <li>Rigorous L2/L3 incident resolution, OpsGenie alerting & ServiceNow workflows</li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
 
     <footer>
         &copy; 2026 RH Technology Group. All rights reserved.
